@@ -1,0 +1,21 @@
+server:
+  port: 8083
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8084/eureka
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: flightAppUser
+        uri: http://localhost:8081/
+        predicates:
+        - Path=/user/**
+      - id: flightAppAdmin
+        uri: http://localhost:8082/
+        predicates:
+        - Path=/admin/**
+  application:
+    name: GATEWAY-API
+        
