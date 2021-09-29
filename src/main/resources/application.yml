@@ -1,21 +1,34 @@
 server:
-  port: 8083
+  port: 8094
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8084/eureka
+      defaultZone: http://localhost:8095/eureka
 spring:
   cloud:
     gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: http://localhost:4200
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
       routes:
       - id: flightAppUser
-        uri: http://localhost:8081/
+        uri: http://localhost:8091/
         predicates:
-        - Path=/user/**
+        - Path=/api1/**          
       - id: flightAppAdmin
-        uri: http://localhost:8082/
+        uri: http://localhost:8092/
         predicates:
-        - Path=/admin/**
+        - Path=/api2/**
+      - id: flightAppAirline
+        uri: http://localhost:8093/
+        predicates:
+        - Path=/api3/**  
   application:
     name: GATEWAY-API
         

@@ -8,17 +8,17 @@
 //@Configuration
 //public class SpringCloudConfig {
 //
-//    @Bean
-//    public RouteLocator gatewayRoutes(RouteLocatorBuilder builder) {
-//        return builder.routes()
-//                .route(r -> r.path("/api/v1.0/flight/**")
-//                        .uri("http://localhost:8081/")
-//                        .id("flightAppUser"))
+//	@Bean
+//	public RouteLocator gatewayRoutes(RouteLocatorBuilder builder) {
+//		return builder.routes()
+//				.route(r -> r.path("/employee/**")
+//						.filters(f -> f.hystrix(h -> h.setName("Hystrix").setFallbackUri("forward:/fallback/message")))
+//						.uri("lb://FIRST-SERVICE").id("employeeModule"))
 //
-//                .route(r -> r.path("/api/v1.0/flight/**")
-//                        .uri("http://localhost:8082/")
-//                        .id("flightAppAdmin"))
-//                .build();
-//    }
+//				.route(r -> r.path("/consumer/**")
+//						.filters(f -> f.hystrix(h -> h.setName("Hystrix").setFallbackUri("forward:/fallback/message")))
+//						.uri("lb://SECOND-SERVICE").id("consumerModule"))
+//				.build();
+//	}
 //
 //}
